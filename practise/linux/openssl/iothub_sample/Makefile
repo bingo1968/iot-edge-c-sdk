@@ -1,7 +1,7 @@
 CFLAGS = -g -O2 -std=gnu99
 DFLAGS = -DUSE_OPENSSL
 # modify openssl lib dir path on your system
-LDFLAGS =  -L/home/hlx/work/proj/deps/openssl-1.0.2k/install/lib -lssl -lcrypto 
+LDFLAGS =  -L/path/to/your/openssl/lib/dir -lssl -lcrypto 
 LDFLAGS +=  -lm -lpthread -lrt -ldl 
 TARGET := iothub_sample_test
 
@@ -24,7 +24,7 @@ vecho := @echo
 endif
 
 # modify openssl include dir path on your system
-INC = -I/home/hlx/work/proj/deps/openssl-1.0.2k/install/include \
+INC = -I/path/to/your/openssl/include/dir \
 -I$(EDGE_SDK_DIR)/c-utility/inc  \
 -I$(EDGE_SDK_DIR)/c-utility/inc/azure_c_shared_utility \
 -I$(EDGE_SDK_DIR)/iothub_client/inc \

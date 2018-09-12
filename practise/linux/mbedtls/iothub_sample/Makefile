@@ -1,7 +1,7 @@
 CFLAGS = -g -O2 -std=gnu99
 DFLAGS = -DUSE_MBED_TLS
 # modify mbedtls lib dir path on your system
-LDFLAGS =  -L/home/hlx/work/proj/deps/mbedtls/install/lib -lmbedtls -lmbedcrypto -lmbedx509
+LDFLAGS =  -L/path/to/your/mbedtls/lib/dir -lmbedtls -lmbedcrypto -lmbedx509
 LDFLAGS +=  -lm -lpthread -lrt -ldl 
 TARGET := iothub_sample_test
 
@@ -24,7 +24,7 @@ vecho := @echo
 endif
 
 # modify mbedtls include dir path on your system
-INC = -I/home/hlx/work/proj/deps/mbedtls/install/include \
+INC = -I/path/to/your/mbedtls/include/dir \
 -I$(EDGE_SDK_DIR)/c-utility/inc  \
 -I$(EDGE_SDK_DIR)/c-utility/inc/azure_c_shared_utility \
 -I$(EDGE_SDK_DIR)/iothub_client/inc \
