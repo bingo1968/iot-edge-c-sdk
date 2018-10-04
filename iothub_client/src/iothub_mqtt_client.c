@@ -951,12 +951,13 @@ static int SendMqttConnectMessage(IOTHUB_MQTT_CLIENT_HANDLE iotHubClient)
     {
         if (mqtt_client_connect(iotHubClient->mqttClient, iotHubClient->xioTransport, iotHubClient->options) != 0)
         {
-            LogError("failed to initialize mqtt connection with server");
+            LogDbg("mqtt_client_connect() fail\n");
             // TODO: add code to handle release data for IOTHUB_MQTT_CLIENT_HANDLE
             result = __FAILURE__;
         }
         else
         {
+			LogDbg("mqtt_client_connect() success\n");
             (void)tickcounter_get_current_ms(iotHubClient->msgTickCounter, &(iotHubClient->mqtt_connect_time));
             result = 0;
         }
@@ -1111,7 +1112,7 @@ int initialize_mqtt_connection(IOTHUB_MQTT_CLIENT_HANDLE iotHubClient)
             {
                 LogError("mqtt_client timed out waiting for CONNACK");
                 DisconnectFromClient(iotHubClient);
-                result = 0;
+                result = __FAILURE__;
             }
         }
         else if (iotHubClient->mqttClientStatus == MQTT_CLIENT_STATUS_CONNECTED)
@@ -1168,7 +1169,7 @@ void iothub_mqtt_dowork(IOTHUB_MQTT_CLIENT_HANDLE iotHubClient)
 {
     if (initialize_mqtt_connection(iotHubClient) != 0)
     {
-        LogError("fail to establish connection with server");
+        LogError("initialize_mqtt_connection() failed\n");
     }
     else
     {
